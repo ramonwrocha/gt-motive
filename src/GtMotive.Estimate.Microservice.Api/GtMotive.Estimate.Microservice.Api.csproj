@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -26,6 +26,14 @@
     <ItemGroup>
         <ProjectReference Include="..\GtMotive.Estimate.Microservice.ApplicationCore\GtMotive.Estimate.Microservice.ApplicationCore.csproj" />
         <ProjectReference Include="..\GtMotive.Estimate.Microservice.Infrastructure\GtMotive.Estimate.Microservice.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UseCases\Fleet\GetFleetStatus\" />
+      <Folder Include="UseCases\Vehicle\CreateVehicle\" />
+      <Folder Include="UseCases\Vehicle\ListAvailableVehicles\" />
+      <Folder Include="UseCases\Vehicle\ReturnVehicle\" />
+      <Folder Include="UseCases\Vehicle\RentVehicle\" />
     </ItemGroup>
 
 </Project>

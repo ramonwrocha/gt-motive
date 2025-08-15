@@ -6,4 +6,15 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Fleet\Entities\" />
+      <Folder Include="Fleet\Services\" />
+      <Folder Include="Fleet\ValueObjects\" />
+      <Folder Include="Rentals\Entities\" />
+      <Folder Include="Rentals\Services\" />
+      <Folder Include="Rentals\ValueObjects\" />
+      <Folder Include="Vehicles\Entities\" />
+      <Folder Include="Vehicles\Services\" />
+    </ItemGroup>
+
 </Project>

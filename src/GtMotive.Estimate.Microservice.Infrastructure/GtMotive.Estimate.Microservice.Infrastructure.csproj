@@ -18,4 +18,11 @@
         <ProjectReference Include="..\GtMotive.Estimate.Microservice.ApplicationCore\GtMotive.Estimate.Microservice.ApplicationCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="MongoDb\Entities\RentalEntity\" />
+      <Folder Include="MongoDb\Entities\VehicleEntity\" />
+      <Folder Include="MongoDb\Repositories\RentalRepository\" />
+      <Folder Include="MongoDb\Repositories\VehicleRepository\" />
+    </ItemGroup>
+
 </Project>
