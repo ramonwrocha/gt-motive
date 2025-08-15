@@ -1,0 +1,44 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: gt-motive-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: gtmotive
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - gt-motive-network
+
+  gt-motive-api:
+    build:
+      context: .
+      dockerfile: GtMotive.Estimate.Microservice.Host/Dockerfile
+    container_name: gt-motive-api
+    restart: unless-stopped
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080;https://+:8081
+      - ConnectionStrings__MongoDB=mongodb://admin:password123@mongodb:27017/gtmotive
+    depends_on:
+      - mongodb
+    networks:
+      - gt-motive-network
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  gt-motive-network:
+    driver: bridge
