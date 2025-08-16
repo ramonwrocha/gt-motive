@@ -7,7 +7,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Entities
     public sealed class VehicleEntity
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRepresentation(BsonType.String)]
         public string Id { get; set; } = string.Empty;
 
         [BsonElement("brand")]
