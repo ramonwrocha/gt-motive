@@ -27,7 +27,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__MongoDB=mongodb://admin:password123@mongodb:27017/gtmotive
       - MongoDb__ConnectionString=mongodb://admin:password123@mongodb:27017/gtmotive
-      - MongoDb__Database=gtmotive
+      - MongoDb__DatabaseName=gtmotive
       - PathBase=/
     depends_on:
       - mongodb

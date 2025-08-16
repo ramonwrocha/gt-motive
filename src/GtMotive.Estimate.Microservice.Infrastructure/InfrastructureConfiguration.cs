@@ -50,7 +50,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             {
                 var settings = provider.GetRequiredService<IOptions<MongoDbSettings>>().Value;
                 var client = provider.GetRequiredService<IMongoClient>();
-                return client.GetDatabase(settings.MongoDbDatabaseName);
+                return client.GetDatabase(settings.DatabaseName);
             });
         }
 
