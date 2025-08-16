@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Entities;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.ValueObjects;
@@ -14,11 +15,13 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
     {
         private const string CollectionName = "Vehicles";
         private readonly IMongoCollection<VehicleEntity> _vehiclesCollection;
+        private readonly IResilienceService _resilienceService;
 
-        public VehicleRepository(IMongoDatabase database)
+        public VehicleRepository(IMongoService mongoService, IResilienceService resilienceService)
         {
-            ArgumentNullException.ThrowIfNull(database);
-            _vehiclesCollection = database.GetCollection<VehicleEntity>(CollectionName);
+            ArgumentNullException.ThrowIfNull(mongoService);
+            _vehiclesCollection = mongoService.Database.GetCollection<VehicleEntity>(CollectionName);
+            _resilienceService = resilienceService;
         }
 
         public async Task Add(Vehicle vehicle)
@@ -27,14 +30,21 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
 
             var entity = MapToEntity(vehicle);
 
-            await _vehiclesCollection.InsertOneAsync(entity);
+            await _resilienceService.ExecuteAsync(async () =>
+            {
+                await _vehiclesCollection.InsertOneAsync(entity);
+            });
         }
 
         public async Task<IEnumerable<Vehicle>> GetAvailableVehicles()
         {
             var availableStatus = VehicleStatus.Available.ToString();
 
-            var entities = await _vehiclesCollection.Find(x => x.Status.Equals(availableStatus, StringComparison.Ordinal)).ToListAsync();
+            var entities = await _resilienceService.ExecuteAsync(async () =>
+            {
+                return await _vehiclesCollection
+                    .Find(x => x.Status.Equals(availableStatus, StringComparison.Ordinal)).ToListAsync();
+            });
 
             return entities.Select(MapToDomain);
         }

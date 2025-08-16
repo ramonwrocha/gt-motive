@@ -3,8 +3,11 @@ using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Logging;
+using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
+using GtMotive.Estimate.Microservice.Infrastructure.Resiliense;
+using GtMotive.Estimate.Microservice.Infrastructure.Resiliense.Settings;
 using GtMotive.Estimate.Microservice.Infrastructure.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -32,7 +35,9 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
                 services.AddScoped<ITelemetry, NoOpTelemetry>();
             }
 
-            services.RegistreRepositories();
+            services.RegisterSettings();
+            services.RegisterRepositories();
+            services.RegisterServices();
             services.RegisterMongoDb();
 
             return new InfrastructureBuilder(services);
@@ -54,9 +59,28 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             });
         }
 
-        private static void RegistreRepositories(this IServiceCollection services)
+        private static void RegisterSettings(this IServiceCollection services)
+        {
+            services.AddOptions<MongoDbSettings>()
+                .BindConfiguration(MongoDbSettings.SectionName)
+                .ValidateDataAnnotations()
+                .ValidateOnStart();
+
+            services.AddOptions<ResilienseSettings>()
+                .BindConfiguration(ResilienseSettings.SectionName)
+                .ValidateDataAnnotations()
+                .ValidateOnStart();
+        }
+
+        private static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+        }
+
+        private static void RegisterServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IResilienceService, ResilienceService>();
+            services.AddSingleton<IMongoService, MongoService>();
         }
 
         private sealed class InfrastructureBuilder(IServiceCollection services) : IInfrastructureBuilder

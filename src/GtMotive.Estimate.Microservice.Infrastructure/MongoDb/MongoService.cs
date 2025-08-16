@@ -4,8 +4,16 @@ using MongoDB.Driver;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
 {
-    public class MongoService(IOptions<MongoDbSettings> options)
+    public sealed class MongoService : IMongoService
     {
-        public MongoClient MongoClient { get; } = new MongoClient(options.Value.ConnectionString);
+        public MongoService(IOptions<MongoDbSettings> options)
+        {
+            MongoClient = new MongoClient(options.Value.ConnectionString);
+            Database = MongoClient.GetDatabase(options.Value.DatabaseName);
+        }
+
+        public IMongoClient MongoClient { get; }
+
+        public IMongoDatabase Database { get; }
     }
 }

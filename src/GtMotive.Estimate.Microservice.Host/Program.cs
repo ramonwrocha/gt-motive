@@ -8,7 +8,6 @@ using GtMotive.Estimate.Microservice.Api;
 using GtMotive.Estimate.Microservice.Host.Configuration;
 using GtMotive.Estimate.Microservice.Host.DependencyInjection;
 using GtMotive.Estimate.Microservice.Infrastructure;
-using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -57,18 +56,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddOptions<MongoDbSettings>()
-    .BindConfiguration(MongoDbSettings.SectionName)
-    .ValidateDataAnnotations()
-    .ValidateOnStart();
-
 builder.Services.AddOptions<AppSettings>()
     .BindConfiguration(AppSettings.SectionName)
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
-var appSettingsSection = builder.Configuration.GetSection(AppSettings.SectionName);
-var appSettings = appSettingsSection.Get<AppSettings>();
+var appSettings = builder.Configuration.GetSection(AppSettings.SectionName).Get<AppSettings>();
 
 builder.Services.AddControllers(ApiConfiguration.ConfigureControllers)
     .WithApiControllers();

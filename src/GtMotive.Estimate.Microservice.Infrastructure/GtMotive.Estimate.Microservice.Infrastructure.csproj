@@ -8,10 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.ApplicationInsights" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="MongoDB.Bson" />
         <PackageReference Include="MongoDB.Driver" />
         <PackageReference Include="Polly" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
