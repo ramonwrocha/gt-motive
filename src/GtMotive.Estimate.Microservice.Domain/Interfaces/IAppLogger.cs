@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GtMotive.Estimate.Microservice.Infrastructure.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Common.Interfaces
 {
     /// <summary>
     /// This type eliminates the need to depend directly on the ASP.NET Core logging types.

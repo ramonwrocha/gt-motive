@@ -1,6 +1,6 @@
 ﻿using System;
 using GtMotive.Estimate.Microservice.Domain;
-using GtMotive.Estimate.Microservice.Domain.Shared.Interfaces;
+using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

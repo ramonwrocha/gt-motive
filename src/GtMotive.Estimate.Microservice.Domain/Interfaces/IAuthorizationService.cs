@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace GtMotive.Estimate.Microservice.Infrastructure.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Common.Interfaces
 {
     /// <summary>
     /// Checks policy based permissions for a user.

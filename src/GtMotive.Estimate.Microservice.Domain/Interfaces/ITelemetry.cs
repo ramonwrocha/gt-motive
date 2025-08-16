@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GtMotive.Estimate.Microservice.Domain.Shared.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Common.Interfaces
 {
     /// <summary>
     /// Send events, metrics and other telemetry.

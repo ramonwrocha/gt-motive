@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace GtMotive.Estimate.Microservice.Domain.Shared.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Common.Interfaces
 {
     /// <summary>
     /// Unit Of Work. Should only be used by Use Cases.
