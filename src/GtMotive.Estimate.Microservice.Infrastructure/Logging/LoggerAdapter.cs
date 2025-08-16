@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
+using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Logging

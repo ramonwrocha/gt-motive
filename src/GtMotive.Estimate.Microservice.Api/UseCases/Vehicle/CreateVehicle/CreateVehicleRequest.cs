@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle
 {
@@ -11,6 +12,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle
         public string Model { get; set; } = string.Empty;
 
         [Required]
+        [JsonRequired]
         public int ManufactureYear { get; set; }
 
         [Required]

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
+using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using Microsoft.ApplicationInsights;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Telemetry

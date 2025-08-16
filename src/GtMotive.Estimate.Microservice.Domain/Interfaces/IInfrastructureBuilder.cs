@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace GtMotive.Estimate.Microservice.Domain.Common.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Interfaces
 {
     /// <summary>
     /// Provides a builder for configuring infrastructure services.
