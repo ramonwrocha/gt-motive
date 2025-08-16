@@ -25,7 +25,6 @@ services:
       - "5001:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__MongoDB=mongodb://admin:password123@mongodb:27017/gtmotive
       - MongoDb__ConnectionString=mongodb://admin:password123@mongodb:27017/gtmotive
       - MongoDb__DatabaseName=gtmotive
       - PathBase=/
