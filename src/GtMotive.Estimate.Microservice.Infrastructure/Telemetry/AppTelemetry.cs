@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using GtMotive.Estimate.Microservice.Domain.Interfaces;
+using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
 using Microsoft.ApplicationInsights;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Telemetry
 {
     [ExcludeFromCodeCoverage]
-    public class AppTelemetry : ITelemetry
+    public class AppTelemetry(TelemetryClient telemetry) : ITelemetry
     {
-        private readonly TelemetryClient _telemetryClient;
-
-        public AppTelemetry(TelemetryClient telemetry)
-        {
-            _telemetryClient = telemetry;
-        }
+        private readonly TelemetryClient _telemetryClient = telemetry;
 
         public void TrackEvent(string eventName, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
         {

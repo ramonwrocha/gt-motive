@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace GtMotive.Estimate.Microservice.Domain.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Shared.Interfaces
 {
     /// <summary>
     /// Bus API.

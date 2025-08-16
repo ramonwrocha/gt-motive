@@ -2,6 +2,8 @@
 {
     public class MongoDbSettings
     {
+        public const string SectionName = "MongoDb";
+
         public string ConnectionString { get; set; }
 
         public string MongoDbDatabaseName { get; set; }

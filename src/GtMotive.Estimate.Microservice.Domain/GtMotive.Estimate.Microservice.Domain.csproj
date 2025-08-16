@@ -13,7 +13,6 @@
       <Folder Include="Rentals\Entities\" />
       <Folder Include="Rentals\Services\" />
       <Folder Include="Rentals\ValueObjects\" />
-      <Folder Include="Vehicles\Entities\" />
       <Folder Include="Vehicles\Services\" />
     </ItemGroup>
 

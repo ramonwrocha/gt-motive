@@ -30,7 +30,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\Fleet\GetFleetStatus\" />
-      <Folder Include="UseCases\Vehicle\CreateVehicle\" />
       <Folder Include="UseCases\Vehicle\ListAvailableVehicles\" />
       <Folder Include="UseCases\Vehicle\ReturnVehicle\" />
       <Folder Include="UseCases\Vehicle\RentVehicle\" />

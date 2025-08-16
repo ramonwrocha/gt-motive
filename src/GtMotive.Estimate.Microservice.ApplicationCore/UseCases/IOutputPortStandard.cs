@@ -12,5 +12,11 @@
         /// </summary>
         /// <param name="response">The Output Port Message.</param>
         void StandardHandle(TUseCaseOutput response);
+
+        /// <summary>
+        /// Handles validation errors by providing an error message.
+        /// </summary>
+        /// <param name="message">The validation error message.</param>
+        void ValidationError(string message);
     }
 }

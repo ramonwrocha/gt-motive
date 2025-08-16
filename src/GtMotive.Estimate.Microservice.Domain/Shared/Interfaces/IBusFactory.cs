@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GtMotive.Estimate.Microservice.Domain.Interfaces
+namespace GtMotive.Estimate.Microservice.Domain.Shared.Interfaces
 {
     /// <summary>
     /// Bus Factory.

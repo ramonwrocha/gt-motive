@@ -57,10 +57,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var appSettingsSection = builder.Configuration.GetSection("AppSettings");
-builder.Services.Configure<AppSettings>(appSettingsSection);
+builder.Services.AddOptions<MongoDbSettings>()
+    .BindConfiguration(MongoDbSettings.SectionName)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+builder.Services.AddOptions<AppSettings>()
+    .BindConfiguration(AppSettings.SectionName)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+var appSettingsSection = builder.Configuration.GetSection(AppSettings.SectionName);
 var appSettings = appSettingsSection.Get<AppSettings>();
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
 
 builder.Services.AddControllers(ApiConfiguration.ConfigureControllers)
     .WithApiControllers();
