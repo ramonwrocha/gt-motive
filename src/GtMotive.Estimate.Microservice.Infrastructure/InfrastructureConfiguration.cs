@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
+using GtMotive.Estimate.Microservice.Domain.Rentals.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Logging;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb;
@@ -75,6 +76,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
         private static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IRentalRepository, RentalRepository>();
         }
 
         private static void RegisterServices(this IServiceCollection services)

@@ -51,6 +51,11 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Entities
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
         /// <summary>
+        /// Gets a value indicating whether the vehicle is available for rent.
+        /// </summary>
+        public bool IsAvailable => Status == VehicleStatus.Available;
+
+        /// <summary>
         /// Creates a new <see cref="Vehicle"/> instance with the specified brand, model, manufacture year, and license plate.
         /// </summary>
         /// <param name="brand">The brand of the vehicle.</param>

@@ -7,13 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Rentals\Services\**" />
+      <Compile Remove="Vehicles\Services\**" />
+      <EmbeddedResource Remove="Rentals\Services\**" />
+      <EmbeddedResource Remove="Vehicles\Services\**" />
+      <None Remove="Rentals\Services\**" />
+      <None Remove="Vehicles\Services\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Fleet\Entities\" />
       <Folder Include="Fleet\Services\" />
       <Folder Include="Fleet\ValueObjects\" />
-      <Folder Include="Rentals\Entities\" />
-      <Folder Include="Rentals\Services\" />
       <Folder Include="Rentals\ValueObjects\" />
-      <Folder Include="Vehicles\Services\" />
     </ItemGroup>
 
 </Project>

@@ -10,6 +10,13 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces
     public interface IVehicleRepository
     {
         /// <summary>
+        /// Gets a vehicle by its unique identifier.
+        /// </summary>
+        /// <param name="vehicleId">The vehicle's unique identifier.</param>
+        /// <returns>The vehicle if found; otherwise, null.</returns>
+        Task<Vehicle> GetById(string vehicleId);
+
+        /// <summary>
         /// Adds a new vehicle to the repository.
         /// </summary>
         /// <param name="vehicle">The vehicle to add.</param>

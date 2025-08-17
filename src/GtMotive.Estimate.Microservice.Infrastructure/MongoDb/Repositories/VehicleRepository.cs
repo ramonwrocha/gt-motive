@@ -24,6 +24,22 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
             _resilienceService = resilienceService;
         }
 
+        public async Task<Vehicle> GetById(string vehicleId)
+        {
+            ArgumentNullException.ThrowIfNull(vehicleId);
+
+            var entity = await _resilienceService.ExecuteAsync(async () =>
+            {
+                return await _vehiclesCollection
+                    .Find(x => x.Id == vehicleId)
+                    .FirstOrDefaultAsync();
+            });
+
+            return entity is not null
+                ? MapToDomain(entity)
+                : null;
+        }
+
         public async Task Add(Vehicle vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);

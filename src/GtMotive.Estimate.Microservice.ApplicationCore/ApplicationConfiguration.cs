@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ListAvailableVehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVehicle;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]
@@ -25,6 +26,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationConfiguration).GetTypeInfo().Assembly));
             services.AddScoped<ICreateVehicleUseCase, CreateVehicleUseCase>();
             services.AddScoped<IListAvailableVehiclesUseCase, ListAvailableVehiclesUseCase>();
+            services.AddScoped<IRentVehicleUseCase, RentVehicleUseCase>();
 
             return services;
         }

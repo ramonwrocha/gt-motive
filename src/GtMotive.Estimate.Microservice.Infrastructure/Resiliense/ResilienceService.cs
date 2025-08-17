@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Resiliense.Settings;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Polly;
 using Polly.Wrap;
 
@@ -19,13 +20,13 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Resiliense
             var settings = resilienseSettings.Value;
 
             var retryPolicy = Policy
-                .Handle<Exception>()
+                .Handle<Exception>(IsCriticalMongoDbException)
                 .WaitAndRetryAsync(
                     retryCount: settings.RetryCount,
                     sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(retryAttempt));
 
             var circuitBreakerPolicy = Policy
-                .Handle<Exception>()
+                .Handle<Exception>(IsCriticalMongoDbException)
                 .AdvancedCircuitBreakerAsync(
                     failureThreshold: settings.CircuitBreakerFailureThreshold, // Break if some percent of requests fail (0.5 => 50%)
                     samplingDuration: TimeSpan.FromSeconds(settings.CircuitBreakerSamplingDurationSeconds), // over what period to sample
@@ -44,5 +45,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Resiliense
         {
             await _policy.ExecuteAsync(operation);
         }
+
+        private bool IsCriticalMongoDbException(Exception ex) =>
+                ex is MongoConnectionException or MongoExecutionTimeoutException;
     }
 }
