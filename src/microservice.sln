@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microserv
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DCF2C2DB-3DCF-4E8D-8A7E-B3C4B7B7B7B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtMotive.Estimate.Microservice.Abstractions", "GtMotive.Estimate.Microservice.Abstractions\GtMotive.Estimate.Microservice.Abstractions.csproj", "{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{DCF2C2DB-3DCF-4E8D-8A7E-B3C4B7B7B7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF2C2DB-3DCF-4E8D-8A7E-B3C4B7B7B7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCF2C2DB-3DCF-4E8D-8A7E-B3C4B7B7B7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{5F6CD05A-A921-49B8-BF96-1B931022439C} = {9759AD80-2ECC-4B44-8D15-B96BD29CB584}
 		{157090A2-A86C-4F2A-A31D-3072779E4D99} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
+		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {082C0E30-A2C7-439B-AE7B-129FEC797BEA}

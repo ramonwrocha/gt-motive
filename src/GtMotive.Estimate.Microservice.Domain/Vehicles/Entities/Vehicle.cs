@@ -90,9 +90,8 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Entities
         {
             var vehicle = new Vehicle(id, brand, model, manufactureYear, licensePlate)
             {
-                Id = id,
                 CreatedAt = createdAt,
-                Status = Enum.TryParse<VehicleStatus>(status, out var parsedStatus) ? parsedStatus : VehicleStatus.Available
+                Status = new VehicleStatus(status ?? VehicleStatus.Available.Value)
             };
 
             return vehicle;

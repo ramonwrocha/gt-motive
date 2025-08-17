@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ListAvailableVehicles;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]
@@ -22,7 +23,8 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationConfiguration).GetTypeInfo().Assembly));
-            services.AddScoped<CreateVehicleUseCase>();
+            services.AddScoped<ICreateVehicleUseCase, CreateVehicleUseCase>();
+            services.AddScoped<IListAvailableVehiclesUseCase, ListAvailableVehiclesUseCase>();
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using GtMotive.Estimate.Microservice.Abstractions.Interfaces;
+using MediatR;
 
 namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle
 {
@@ -9,7 +10,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
         string Brand,
         string Model,
         int ManufactureYear,
-        string LicensePlate) : IRequest
+        string LicensePlate) : IRequest<IWebApiPresenter>
     {
         /// <summary>
         /// Gets the brand of the vehicle.

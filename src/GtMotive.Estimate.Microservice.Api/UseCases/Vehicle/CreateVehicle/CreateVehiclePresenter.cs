@@ -1,5 +1,7 @@
 ﻿using System;
+using GtMotive.Estimate.Microservice.Abstractions.Interfaces;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle;
+using GtMotive.Estimate.Microservice.Domain.Vehicles.ValueObjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle
@@ -19,7 +21,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle
                 response.Model,
                 response.ManufactureYear,
                 response.LicensePlate,
-                Status = "Available"
+                Status = VehicleStatus.Available.ToString()
             });
         }
 

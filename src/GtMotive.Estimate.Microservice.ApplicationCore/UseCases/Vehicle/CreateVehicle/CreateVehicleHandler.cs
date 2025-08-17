@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using GtMotive.Estimate.Microservice.Abstractions.Interfaces;
 using MediatR;
 
 namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle
@@ -8,11 +9,11 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
     /// <summary>
     /// Handles the creation of a vehicle by processing the <see cref="CreateVehicleCommand"/>.
     /// </summary>
-    /// <remarks>
-    /// Initializes a new instance of the <see cref="CreateVehicleHandler"/> class.
-    /// </remarks>
     /// <param name="useCase">The use case to execute vehicle creation.</param>
-    public class CreateVehicleHandler(CreateVehicleUseCase useCase) : IRequestHandler<CreateVehicleCommand>
+    /// <param name="outputPort">The output port to handle the result of the vehicle creation process.</param>
+    public class CreateVehicleHandler(
+        ICreateVehicleUseCase useCase,
+        ICreateVehicleOutputPort outputPort) : IRequestHandler<CreateVehicleCommand, IWebApiPresenter>
     {
         /// <summary>
         /// Handles the specified <see cref="CreateVehicleCommand"/> to create a vehicle.
@@ -20,7 +21,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
         /// <param name="request">The command containing vehicle creation data.</param>
         /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
-        public async Task Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
+        public async Task<IWebApiPresenter> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
         {
             ArgumentNullException.ThrowIfNull(request);
 
@@ -31,6 +32,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
                 request.LicensePlate);
 
             await useCase.Execute(input);
+            return (IWebApiPresenter)outputPort;
         }
     }
 }

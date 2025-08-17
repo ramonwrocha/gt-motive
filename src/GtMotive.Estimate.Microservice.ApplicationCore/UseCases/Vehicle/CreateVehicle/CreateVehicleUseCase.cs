@@ -11,7 +11,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
     /// <param name="vehicleRepository">Repository for vehicle persistence operations.</param>
     public sealed class CreateVehicleUseCase(
         ICreateVehicleOutputPort outputPort,
-        IVehicleRepository vehicleRepository) : IUseCase<CreateVehicleInput>
+        IVehicleRepository vehicleRepository) : ICreateVehicleUseCase
     {
         /// <summary>
         /// Executes the vehicle creation use case with the provided input.
