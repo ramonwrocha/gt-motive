@@ -2,7 +2,7 @@
 {
     public class RentVehicleRequest
     {
-        public string PersonId { get; set; }
+        public string PersonName { get; set; }
 
         public string VehicleId { get; set; }
     }

@@ -8,7 +8,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Entities
     public sealed class Rental(
         string id,
         string vehicleId,
-        string personId,
+        string personName,
         DateTime startDate)
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Entities
         /// <summary>
         /// Gets the unique identifier for the person renting the vehicle.
         /// </summary>
-        public string PersonId { get; private set; } = personId;
+        public string PersonName { get; private set; } = personName;
 
         /// <summary>
         /// Gets the start date of the rental.
@@ -45,13 +45,13 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Entities
         /// Factory method to create a new Rental.
         /// </summary>
         /// <param name="vehicleId">The brand of the vehicle.</param>
-        /// <param name="personId">The model of the vehicle.</param>
+        /// <param name="personName">The model of the vehicle.</param>
         /// <returns>A new <see cref="Rental"/> instance.</returns>
-        public static Rental Create(string vehicleId, string personId)
+        public static Rental Create(string vehicleId, string personName)
         {
-            ValidateCreate(vehicleId, personId);
+            ValidateCreate(vehicleId, personName);
 
-            return new Rental(Guid.NewGuid().ToString(), vehicleId, personId, DateTime.UtcNow);
+            return new Rental(Guid.NewGuid().ToString(), vehicleId, personName, DateTime.UtcNow);
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Entities
         /// </summary>
         /// <param name="id">The unique identifier for the rental.</param>
         /// <param name="vehicleId">The unique identifier for the vehicle being rented.</param>
-        /// <param name="personId">The unique identifier for the person renting the vehicle.</param>
+        /// <param name="personName">The unique identifier for the person renting the vehicle.</param>
         /// <param name="startDate">The start date of the rental.</param>
         /// <param name="endDate">The end date of the rental, if it has ended.</param>
         /// <returns>A <see cref="Rental"/> instance created from persistence.</returns>
         public static Rental CreateFromPersistence(
-            string id, string vehicleId, string personId, DateTime startDate, DateTime? endDate)
+            string id, string vehicleId, string personName, DateTime startDate, DateTime? endDate)
         {
-            var rental = new Rental(id, vehicleId, personId, startDate)
+            var rental = new Rental(id, vehicleId, personName, startDate)
             {
                 EndDate = endDate
             };
@@ -77,32 +77,21 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Entities
         /// <summary>
         /// Ends the rental at the specified end date.
         /// </summary>
-        /// <param name="endDate">The end date of the rental.</param>
-        public void End(DateTime endDate)
+        public void End()
         {
-            if (EndDate != null)
-            {
-                throw new InvalidOperationException("Rental already ended.");
-            }
-
-            if (endDate < StartDate)
-            {
-                throw new DomainException("End date cannot be before start date.");
-            }
-
-            EndDate = endDate;
+            EndDate = DateTime.UtcNow;
         }
 
-        private static void ValidateCreate(string vehicleId, string personId)
+        private static void ValidateCreate(string vehicleId, string personName)
         {
             if (string.IsNullOrWhiteSpace(vehicleId))
             {
                 throw new DomainException("VehicleId is required.");
             }
 
-            if (string.IsNullOrWhiteSpace(personId))
+            if (string.IsNullOrWhiteSpace(personName))
             {
-                throw new DomainException("PersonId is required.");
+                throw new DomainException("PersonName is required.");
             }
         }
     }

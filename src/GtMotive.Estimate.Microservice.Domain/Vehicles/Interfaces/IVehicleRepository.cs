@@ -28,5 +28,12 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces
         /// </summary>
         /// <returns>A task that represents the asynchronous operation. The task result contains a collection of available vehicles.</returns>
         Task<IEnumerable<Vehicle>> GetAvailableVehicles();
+
+        /// <summary>
+        /// Updates an existing vehicle in the repository.
+        /// </summary>
+        /// <param name="vehicle">The vehicle to update.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        Task Update(Vehicle vehicle);
     }
 }

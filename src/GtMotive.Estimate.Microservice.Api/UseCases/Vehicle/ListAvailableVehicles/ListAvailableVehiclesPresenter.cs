@@ -18,10 +18,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.ListAvailableVehic
             var apiResponse = new ListAvailableVehiclesResponse(
                 response.Vehicles.Select(vehicle => new VehicleItemModel(
                     vehicle.Id,
-                    vehicle.Brand,
-                    vehicle.Model,
                     vehicle.ManufactureYear,
-                    vehicle.LicensePlate,
                     vehicle.Status.Value)));
 
             ActionResult = new OkObjectResult(apiResponse);

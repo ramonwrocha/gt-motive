@@ -17,10 +17,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle
             ActionResult = new CreatedResult($"/api/vehicles/{response.VehicleId}", new
             {
                 response.VehicleId,
-                response.Brand,
-                response.Model,
                 response.ManufactureYear,
-                response.LicensePlate,
                 Status = VehicleStatus.Available.ToString()
             });
         }

@@ -5,7 +5,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
     /// <summary>
     /// Represents the output details of a vehicle rental operation.
     /// </summary>
-    public class RentVehicleOutput(string rentalId, string vehicleId, string personId, DateTime startDate) : IUseCaseOutput
+    public class RentVehicleOutput(string rentalId, string vehicleId, string personName, DateTime startDate) : IUseCaseOutput
     {
         /// <summary>
         /// Gets or sets the unique identifier of the rental.
@@ -20,7 +20,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
         /// <summary>
         /// Gets or sets the unique identifier of the person renting the vehicle.
         /// </summary>
-        public string PersonId { get; set; } = personId;
+        public string PersonName { get; set; } = personName;
 
         /// <summary>
         /// Gets or sets the start date of the rental period.

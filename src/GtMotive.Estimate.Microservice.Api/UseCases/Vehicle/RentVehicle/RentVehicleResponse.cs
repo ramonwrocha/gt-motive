@@ -8,7 +8,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RentVehicle
 
         public string VehicleId { get; set; }
 
-        public string PersonId { get; set; }
+        public string PersonName { get; set; }
 
         public DateTime StartDate { get; set; }
     }

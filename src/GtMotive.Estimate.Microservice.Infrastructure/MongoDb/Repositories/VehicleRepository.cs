@@ -65,15 +65,29 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
             return entities.Select(MapToDomain);
         }
 
+        public async Task Update(Vehicle vehicle)
+        {
+            await _resilienceService.ExecuteAsync(async () =>
+            {
+                var entity = MapToEntity(vehicle);
+
+                var filter = Builders<VehicleEntity>.Filter.Eq(x => x.Id, entity.Id);
+
+                var result = await _vehiclesCollection.ReplaceOneAsync(filter, entity);
+
+                if (result.ModifiedCount == 0)
+                {
+                    throw new InvalidOperationException($"Vehicle with ID {entity.Id} not found.");
+                }
+            });
+        }
+
         private static VehicleEntity MapToEntity(Vehicle vehicle)
         {
             return new VehicleEntity
             {
                 Id = vehicle.Id,
-                Brand = vehicle.Brand,
-                Model = vehicle.Model,
                 ManufactureYear = vehicle.ManufactureYear,
-                LicensePlate = vehicle.LicensePlate,
                 Status = vehicle.Status.Value,
                 CreatedAt = vehicle.CreatedAt
             };
@@ -83,10 +97,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
         {
             return Vehicle.CreateFromPersistence(
                 id: entity.Id,
-                brand: entity.Brand,
-                model: entity.Model,
                 manufactureYear: entity.ManufactureYear,
-                licensePlate: entity.LicensePlate,
                 status: entity.Status,
                 createdAt: entity.CreatedAt);
         }

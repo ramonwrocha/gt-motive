@@ -23,19 +23,18 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
             ArgumentNullException.ThrowIfNull(input);
 
             var vehicle = Domain.Vehicles.Entities.Vehicle.Create(
-                brand: input.Brand,
-                model: input.Model,
-                manufactureYear: input.ManufactureYear,
-                licensePlate: input.LicensePlate);
+                manufactureYear: input.ManufactureYear);
 
             await vehicleRepository.Add(vehicle);
 
-            outputPort.StandardHandle(response: new CreateVehicleOutput(
-                    vehicleId: vehicle.Id,
-                    brand: vehicle.Brand,
-                    model: vehicle.Model,
-                    manufactureYear: vehicle.ManufactureYear,
-                    licensePlate: vehicle.LicensePlate));
+            outputPort.StandardHandle(response: BuildOutput(vehicle));
+        }
+
+        private static CreateVehicleOutput BuildOutput(Domain.Vehicles.Entities.Vehicle vehicle)
+        {
+            return new CreateVehicleOutput(
+                vehicleId: vehicle.Id,
+                manufactureYear: vehicle.ManufactureYear);
         }
     }
 }

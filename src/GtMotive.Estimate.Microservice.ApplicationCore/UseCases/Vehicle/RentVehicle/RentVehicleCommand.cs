@@ -6,9 +6,9 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
     /// <summary>
     /// Command to request the rental of a vehicle by a person.
     /// </summary>
-    /// <param name="PersonId">The identifier of the person renting the vehicle.</param>
+    /// <param name="PersonName">The identifier of the person renting the vehicle.</param>
     /// <param name="VehicleId">The identifier of the vehicle to be rented.</param>
     public sealed record RentVehicleCommand(
-        string PersonId,
+        string PersonName,
         string VehicleId) : IRequest<IWebApiPresenter>;
 }

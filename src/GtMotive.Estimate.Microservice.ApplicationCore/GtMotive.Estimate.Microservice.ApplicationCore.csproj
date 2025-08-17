@@ -13,7 +13,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\Fleet\GetFleetStatus\" />
-      <Folder Include="UseCases\Vehicle\ReturnVehicle\" />
     </ItemGroup>
 
     <ItemGroup>

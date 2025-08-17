@@ -13,8 +13,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Entities
         [BsonElement("vehicleId")]
         public string VehicleId { get; set; }
 
-        [BsonElement("personId")]
-        public string PersonId { get; set; }
+        [BsonElement("personName")]
+        public string PersonName { get; set; }
 
         [BsonElement("startDate")]
         public DateTime StartDate { get; set; }

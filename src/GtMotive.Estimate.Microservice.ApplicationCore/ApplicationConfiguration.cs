@@ -4,6 +4,7 @@ using System.Reflection;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ListAvailableVehicles;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ReturnVehicle;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]
@@ -27,6 +28,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
             services.AddScoped<ICreateVehicleUseCase, CreateVehicleUseCase>();
             services.AddScoped<IListAvailableVehiclesUseCase, ListAvailableVehiclesUseCase>();
             services.AddScoped<IRentVehicleUseCase, RentVehicleUseCase>();
+            services.AddScoped<IReturnVehicleUseCase, ReturnVehicleUseCase>();
 
             return services;
         }

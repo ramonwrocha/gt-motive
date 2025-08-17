@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RentVehicle
 {
     [ApiController]
-    [Route("api/rentals")]
+    [Route("api/rentals/rent")]
     public class RentVehicleController(IMediator mediator, IMapper mapper) : ControllerBase
     {
         [HttpPost]

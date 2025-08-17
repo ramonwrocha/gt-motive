@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Domain.Rentals.Entities;
 
 namespace GtMotive.Estimate.Microservice.Domain.Rentals.Interfaces
@@ -13,9 +11,9 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Interfaces
         /// <summary>
         /// Determines whether the specified person has an active rental.
         /// </summary>
-        /// <param name="personId">The identifier of the person.</param>
+        /// <param name="personName">The identifier of the person.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains true if the person has an active rental; otherwise, false.</returns>
-        Task<bool> HasActiveRental(string personId);
+        Task<bool> HasActiveRental(string personName);
 
         /// <summary>
         /// Creates a new rental for the specified person and vehicle.
@@ -27,22 +25,15 @@ namespace GtMotive.Estimate.Microservice.Domain.Rentals.Interfaces
         /// <summary>
         /// Gets the rental by its identifier.
         /// </summary>
-        /// <param name="rentalId">The identifier of the rental.</param>
+        /// <param name="personName">The identifier of the person.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="Rental"/> if found; otherwise, null.</returns>
-        Task<Rental> GetById(string rentalId);
+        Task<Rental> GetPendingReturn(string personName);
 
         /// <summary>
-        /// Gets all active rentals.
+        /// Updates the specified rental entity in the repository.
         /// </summary>
-        /// <returns>A task that represents the asynchronous operation. The task result contains a collection of active <see cref="Rental"/> entities.</returns>
-        Task<IEnumerable<Rental>> GetActiveRentals();
-
-        /// <summary>
-        /// Ends the rental with the specified identifier and sets the end date.
-        /// </summary>
-        /// <param name="rentalId">The identifier of the rental.</param>
-        /// <param name="endDate">The date the rental ended.</param>
+        /// <param name="rental">The rental entity to update.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        Task EndRental(string rentalId, DateTime endDate);
+        Task Update(Rental rental);
     }
 }

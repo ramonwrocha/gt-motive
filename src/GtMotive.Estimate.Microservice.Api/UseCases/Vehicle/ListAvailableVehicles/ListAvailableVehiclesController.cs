@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.ListAvailableVehicles
 {
     [ApiController]
-    [Route("api/vehicles")]
+    [Route("api/vehicles/available")]
     public class ListAvailableVehiclesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]

@@ -7,10 +7,12 @@ using GtMotive.Estimate.Microservice.Api.Filters;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.CreateVehicle;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.ListAvailableVehicles;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RentVehicle;
+using GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.ReturnVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.CreateVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ListAvailableVehicles;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ReturnVehicle;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -49,6 +51,7 @@ namespace GtMotive.Estimate.Microservice.Api
             services.AddScoped<ICreateVehicleOutputPort, CreateVehiclePresenter>();
             services.AddScoped<IListAvailableVehiclesOutputPort, ListAvailableVehiclesPresenter>();
             services.AddScoped<IRentVehicleOutputPort, RentVehiclePresenter>();
+            services.AddScoped<IReturnVehicleOutputPort, ReturnVehiclePresenter>();
         }
     }
 }

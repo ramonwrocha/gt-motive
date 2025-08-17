@@ -26,10 +26,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
             ArgumentNullException.ThrowIfNull(request);
 
             var input = new CreateVehicleInput(
-                request.Brand,
-                request.Model,
-                request.ManufactureYear,
-                request.LicensePlate);
+                request.ManufactureYear);
 
             await useCase.Execute(input);
             return (IWebApiPresenter)outputPort;

@@ -17,7 +17,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RentVehicle
             {
                 RentalId = output.RentalId,
                 VehicleId = output.VehicleId,
-                PersonId = output.PersonId,
+                PersonName = output.PersonName,
                 StartDate = output.StartDate
             };
 

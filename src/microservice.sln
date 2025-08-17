@@ -41,6 +41,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtMotive.Estimate.Microservice.Abstractions", "GtMotive.Estimate.Microservice.Abstractions\GtMotive.Estimate.Microservice.Abstractions.csproj", "{6C1EFB48-7D47-45FD-8CFE-98F104AF6411}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "architecture", "architecture", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,7 @@ Global
 		{157090A2-A86C-4F2A-A31D-3072779E4D99} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
 		{6C1EFB48-7D47-45FD-8CFE-98F104AF6411} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {32507AA8-A629-48CC-9F32-CBCF746E2117}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {082C0E30-A2C7-439B-AE7B-129FEC797BEA}

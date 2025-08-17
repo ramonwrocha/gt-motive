@@ -17,7 +17,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            var input = new RentVehicleInput(request.PersonId, request.VehicleId);
+            var input = new RentVehicleInput(request.PersonName, request.VehicleId);
             await useCase.Execute(input);
             return (IWebApiPresenter)outputPort;
         }

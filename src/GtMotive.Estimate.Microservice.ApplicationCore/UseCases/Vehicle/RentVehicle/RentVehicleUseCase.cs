@@ -23,7 +23,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
         {
             ArgumentNullException.ThrowIfNull(input);
 
-            var hasActiveRental = await rentalRepository.HasActiveRental(input.PersonId);
+            var hasActiveRental = await rentalRepository.HasActiveRental(input.PersonName);
             if (hasActiveRental)
             {
                 outputPort.AlreadyHasActiveRental("La persona ya tiene un vehículo alquilado.");
@@ -37,9 +37,11 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
                 return;
             }
 
-            var rentalRequest = Rental.Create(vehicleId: input.VehicleId, personId: input.PersonId);
+            vehicle.Rent();
+            await vehicleRepository.Update(vehicle);
 
-            var rental = await rentalRepository.CreateRental(rentalRequest);
+            var request = Rental.Create(vehicleId: input.VehicleId, personName: input.PersonName);
+            var rental = await rentalRepository.CreateRental(request);
 
             outputPort.StandardHandle(response: BuildOutput(rental));
         }
@@ -49,7 +51,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
             return new RentVehicleOutput(
                 rental.Id,
                 rental.VehicleId,
-                rental.PersonId,
+                rental.PersonName,
                 rental.StartDate);
         }
     }
