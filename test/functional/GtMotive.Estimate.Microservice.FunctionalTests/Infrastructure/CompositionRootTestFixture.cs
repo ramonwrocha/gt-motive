@@ -3,18 +3,21 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api;
 using GtMotive.Estimate.Microservice.Infrastructure;
+using GtMotive.Estimate.Microservice.Infrastructure.Resiliense.Settings;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Mongo2Go;
 using Xunit;
 
 [assembly: CLSCompliant(false)]
 
 namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 {
-    internal sealed class CompositionRootTestFixture : IDisposable, IAsyncLifetime
+    public sealed class CompositionRootTestFixture : IDisposable, IAsyncLifetime
     {
         private readonly ServiceProvider _serviceProvider;
+        private readonly MongoDbRunner _mongoRunner;
 
         public CompositionRootTestFixture()
         {
@@ -28,9 +31,14 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
             ConfigureServices(services);
             services.AddSingleton<IConfiguration>(configuration);
             _serviceProvider = services.BuildServiceProvider();
+
+            _mongoRunner = MongoDbRunner.Start();
+            MongoConnectionString = _mongoRunner.ConnectionString;
         }
 
         public IConfiguration Configuration { get; }
+
+        public string MongoConnectionString { get; }
 
         public async Task InitializeAsync()
         {
@@ -40,6 +48,12 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
         public async Task DisposeAsync()
         {
             await Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            _serviceProvider.Dispose();
+            _mongoRunner.Dispose();
         }
 
         public async Task UsingHandlerForRequest<TRequest>(Func<IRequestHandler<TRequest, Unit>, Task> handlerAction)
@@ -84,13 +98,24 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
             await handlerAction.Invoke(handler);
         }
 
-        public void Dispose()
+        private void ConfigureServices(IServiceCollection services)
         {
-            _serviceProvider.Dispose();
-        }
+            services.Configure<Microservice.Infrastructure.MongoDb.Settings.MongoDbSettings>(options =>
+            {
+                options.ConnectionString = MongoConnectionString;
+                options.DatabaseName = "TestDb";
+            });
 
-        private static void ConfigureServices(IServiceCollection services)
-        {
+            services.Configure<ResilienseSettings>(options =>
+            {
+                options.RetryCount = 3;
+                options.RetryDelayMilliseconds = 60;
+                options.CircuitBreakerFailureThreshold = 0.5;
+                options.CircuitBreakerDurationSeconds = 30;
+                options.CircuitBreakerSamplingDurationSeconds = 10;
+                options.CircuitBreakerMinimumThroughput = 5;
+            });
+
             services.AddApiDependencies();
             services.AddLogging();
             services.AddBaseInfrastructure(true);
