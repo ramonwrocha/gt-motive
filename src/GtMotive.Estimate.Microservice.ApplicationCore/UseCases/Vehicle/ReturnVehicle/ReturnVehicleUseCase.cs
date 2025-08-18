@@ -38,12 +38,12 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Return
             rental.End();
             await rentalRepository.Update(rental);
 
-            var vehicle = await vehicleRepository.GetById(rental.VehicleId);
+            var vehicle = await vehicleRepository.GetByIdAsync(rental.VehicleId);
             vehicle?.Return();
 
             if (vehicle is not null)
             {
-                await vehicleRepository.Update(vehicle);
+                await vehicleRepository.UpdateAsync(vehicle);
             }
 
             outputPort.StandardHandle(BuildOutput(rental));

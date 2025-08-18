@@ -14,26 +14,26 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Interfaces
         /// </summary>
         /// <param name="vehicleId">The vehicle's unique identifier.</param>
         /// <returns>The vehicle if found; otherwise, null.</returns>
-        Task<Vehicle> GetById(string vehicleId);
+        Task<Vehicle> GetByIdAsync(string vehicleId);
 
         /// <summary>
         /// Adds a new vehicle to the repository.
         /// </summary>
         /// <param name="vehicle">The vehicle to add.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
-        Task Add(Vehicle vehicle);
+        Task AddAsync(Vehicle vehicle);
 
         /// <summary>
         /// Gets all available vehicles from the repository.
         /// </summary>
         /// <returns>A task that represents the asynchronous operation. The task result contains a collection of available vehicles.</returns>
-        Task<IEnumerable<Vehicle>> GetAvailableVehicles();
+        Task<IEnumerable<Vehicle>> GetAvailableVehiclesAsync();
 
         /// <summary>
         /// Updates an existing vehicle in the repository.
         /// </summary>
         /// <param name="vehicle">The vehicle to update.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
-        Task Update(Vehicle vehicle);
+        Task UpdateAsync(Vehicle vehicle);
     }
 }

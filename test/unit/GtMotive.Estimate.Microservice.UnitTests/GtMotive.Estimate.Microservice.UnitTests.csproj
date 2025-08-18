@@ -7,6 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Api\**" />
+      <EmbeddedResource Remove="Api\**" />
+      <None Remove="Api\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Moq" Version="4.16.0" />
     </ItemGroup>
 
@@ -18,8 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Api\" />
-        <Folder Include="ApplicationCore\Tests\" />
         <Folder Include="Infrastructure\" />
     </ItemGroup>
 

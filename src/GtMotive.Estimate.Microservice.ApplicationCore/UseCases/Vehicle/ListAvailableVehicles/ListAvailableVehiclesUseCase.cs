@@ -23,7 +23,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.ListAv
         {
             ArgumentNullException.ThrowIfNull(input);
 
-            var availableVehicles = await vehicleRepository.GetAvailableVehicles();
+            var availableVehicles = await vehicleRepository.GetAvailableVehiclesAsync();
 
             if (!availableVehicles.Any())
             {

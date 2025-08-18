@@ -24,7 +24,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
             _resilienceService = resilienceService;
         }
 
-        public async Task<Vehicle> GetById(string vehicleId)
+        public async Task<Vehicle> GetByIdAsync(string vehicleId)
         {
             ArgumentNullException.ThrowIfNull(vehicleId);
 
@@ -40,7 +40,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
                 : null;
         }
 
-        public async Task Add(Vehicle vehicle)
+        public async Task AddAsync(Vehicle vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);
 
@@ -52,7 +52,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
             });
         }
 
-        public async Task<IEnumerable<Vehicle>> GetAvailableVehicles()
+        public async Task<IEnumerable<Vehicle>> GetAvailableVehiclesAsync()
         {
             var availableStatus = VehicleStatus.Available.ToString();
 
@@ -65,7 +65,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Repositories
             return entities.Select(MapToDomain);
         }
 
-        public async Task Update(Vehicle vehicle)
+        public async Task UpdateAsync(Vehicle vehicle)
         {
             await _resilienceService.ExecuteAsync(async () =>
             {

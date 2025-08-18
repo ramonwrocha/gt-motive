@@ -3,13 +3,11 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure;
-using Microsoft.VisualBasic;
 using Xunit;
 
 namespace GtMotive.Estimate.Microservice.InfrastructureTests.Specs.Api.Vehicles
 {
-    [Collection(TestCollections.TestServer)]
-    public sealed class CreateVehicleValidationTests(GenericInfrastructureTestServerFixture fixture) : InfrastructureTestBase(fixture)
+    public sealed class CreateVehicleTests(GenericInfrastructureTestServerFixture fixture) : InfrastructureTestBase(fixture)
     {
         private readonly string _path = "/api/vehicles";
 

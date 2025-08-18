@@ -25,7 +25,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.Create
             var vehicle = Domain.Vehicles.Entities.Vehicle.Create(
                 manufactureYear: input.ManufactureYear);
 
-            await vehicleRepository.Add(vehicle);
+            await vehicleRepository.AddAsync(vehicle);
 
             outputPort.StandardHandle(response: BuildOutput(vehicle));
         }

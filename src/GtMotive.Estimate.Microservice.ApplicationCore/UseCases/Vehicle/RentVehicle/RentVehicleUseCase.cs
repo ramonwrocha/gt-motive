@@ -30,7 +30,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
                 return;
             }
 
-            var vehicle = await vehicleRepository.GetById(input.VehicleId);
+            var vehicle = await vehicleRepository.GetByIdAsync(input.VehicleId);
             if (vehicle is null or { IsAvailable: false })
             {
                 outputPort.NotFoundHandle("Vehículo no disponible.");
@@ -38,7 +38,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RentVe
             }
 
             vehicle.Rent();
-            await vehicleRepository.Update(vehicle);
+            await vehicleRepository.UpdateAsync(vehicle);
 
             var request = Rental.Create(vehicleId: input.VehicleId, personName: input.PersonName);
             var rental = await rentalRepository.CreateRental(request);
